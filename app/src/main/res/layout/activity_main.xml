@@ -42,6 +42,15 @@
             android:paddingBottom="0dp">
 
             <Button
+                android:id="@+id/rememberButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="0.1"
+                android:background="@drawable/background_rounded_corners"
+                android:text="思い出す" />
+
+            <Button
                 android:id="@+id/forgetButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,15 +58,6 @@
                 android:layout_weight="1"
                 android:background="@drawable/background_rounded_corners"
                 android:text="忘れる" />
-
-            <Button
-                android:id="@+id/rememberButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/background_rounded_corners"
-                android:text="思い出す" />
         </LinearLayout>
 
     </LinearLayout>
