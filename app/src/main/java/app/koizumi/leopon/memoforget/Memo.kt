@@ -13,6 +13,6 @@ open class Memo(
     @Required
     open var content:String ="",
     @Required
-    open var createdAt: String =""
-//    open var createdAt: Date = Date(System.currentTimeMillis())
+//    open var createdAt: String =""
+    open var createdAt: Date = Date(System.currentTimeMillis())//引数がない場合、現在時刻がデフォルト値になる
 ) : RealmObject() //Realmで保存したい方にはこれを書く決まり

@@ -32,9 +32,8 @@ class MemoAdapter(
 //        }
 //        holder.imageView.setImageResource(memo.imageId)
         holder.contentTextView.text = memo.content
-        holder.dateTextView.text = memo.createdAt
-//            SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE).format(memo.createdAt)
-
+        holder.dateTextView.text =
+            SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE).format(memo.createdAt)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MemoViewHolder {

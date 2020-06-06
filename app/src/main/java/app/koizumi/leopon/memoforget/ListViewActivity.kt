@@ -33,6 +33,7 @@ class ListViewActivity : AppCompatActivity() {
 //        var recyclerView = findViewById(R.id.recyclerView) as RecyclerView//https://stackoverflow.com/questions/48459010/illegalstateexception-recyclerview-is-null-inside-of-fragment-within-navigation
 
         if (recyclerView != null) {
+            recyclerView.setHasFixedSize(true)
             recyclerView.layoutManager = LinearLayoutManager(this)
             recyclerView.adapter = adapter
         }
@@ -42,8 +43,8 @@ class ListViewActivity : AppCompatActivity() {
 //            recyclerView.adapter = adapter
 //        }
         backButton.setOnClickListener {
-            val questionPage = Intent(this, MainActivity::class.java)
-            startActivity(questionPage)
+            val mainInputPage = Intent(this, MainActivity::class.java)
+            startActivity(mainInputPage)
             finish()
         }
 
@@ -55,18 +56,20 @@ class ListViewActivity : AppCompatActivity() {
     }
 
     fun createDummyData() {
-        for (i in 0..8) {
-            create("あんなこと $i","date$i")
-            create("こんなこと $i","date$i")
+        for (i in 1..2) {
+            var m = i*2-1
+            var n =i*2
+            create("あんなこと $m")
+            create("こんなこと $n")
         }
     }
 
-    fun create(content: String, createdAt:String) {
+    fun create(content: String) {
         realm.executeTransaction {
             val memo = it.createObject(Memo::class.java, UUID.randomUUID().toString())
 //            memo.imageId = imageId
             memo.content = content
-            memo.createdAt = createdAt
+//            memo.createdAt = createdAt
         }
     }
 

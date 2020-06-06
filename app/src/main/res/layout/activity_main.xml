@@ -17,6 +17,7 @@
             android:id="@+id/contentEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:ems="11"
@@ -37,6 +38,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:layout_weight="0.1"
             android:orientation="horizontal"
             android:paddingBottom="0dp">
@@ -45,7 +47,6 @@
                 android:id="@+id/rememberButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:layout_weight="0.1"
                 android:background="@drawable/background_rounded_corners"
                 android:text="思い出す" />
@@ -54,7 +55,6 @@
                 android:id="@+id/forgetButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/background_rounded_corners"
                 android:text="忘れる" />
