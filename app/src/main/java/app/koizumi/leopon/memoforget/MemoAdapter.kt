@@ -6,6 +6,7 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@ import java.util.*
 class MemoAdapter(
     private val context: Context,
     private var memoList: OrderedRealmCollection<Memo>?,
+    private var listener: OnItemClickListener,
     private val autoUpdate: Boolean
 ) :
     RealmRecyclerViewAdapter<Memo, MemoAdapter.MemoViewHolder>(memoList, autoUpdate) {
@@ -27,9 +29,9 @@ class MemoAdapter(
     override fun onBindViewHolder(holder: MemoViewHolder, position: Int) {
         val memo: Memo = memoList?.get(position) ?: return
 
-//        holder.container.setOnClickListener{
-//            listener.onItemClick(task)
-//        }
+        holder.container.setOnClickListener{
+            listener.onItemClick(memo)
+        }
 //        holder.imageView.setImageResource(memo.imageId)
         holder.contentTextView.text = memo.content
         holder.dateTextView.text =
@@ -42,9 +44,14 @@ class MemoAdapter(
     }
 
     class MemoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val container : LinearLayout = view.container  // ---------追加----------
 //        val imageView: ImageView = view.imageView
         val contentTextView: TextView = view.contentTextView
         val dateTextView: TextView = view.dateTextView
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(item: Memo)
     }
 
 }
