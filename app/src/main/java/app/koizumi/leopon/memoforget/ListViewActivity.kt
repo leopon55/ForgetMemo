@@ -3,14 +3,11 @@ package app.koizumi.leopon.memoforget
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.Sort
 import kotlinx.android.synthetic.main.activity_list_view.*
-import java.nio.file.Files.delete
 import java.util.*
 
 class ListViewActivity : AppCompatActivity() {
@@ -31,12 +28,17 @@ class ListViewActivity : AppCompatActivity() {
         }
 
 //        val adapter = MemoAdapter(this, memoList, true)
+        val detailPage = Intent(this,DetailActivity::class.java)
+
         val adapter =
             MemoAdapter(this, memoList, object:MemoAdapter.OnItemClickListener {
                 override fun onItemClick(item: Memo) {
                     // クリック時の処理
-                    Toast.makeText(applicationContext, item.content + "を削除しました", Toast.LENGTH_SHORT).show()
-                    delete(item.id)
+//                    Toast.makeText(applicationContext, item.content + "を削除しました", Toast.LENGTH_SHORT).show()
+//                    delete(item.id)
+                    detailPage.putExtra("memoId", item.id.toString())//idを持たせる
+                    startActivity(detailPage)
+                    finish()
                 }
             }, true)
 //        var recyclerView = findViewById(R.id.recyclerView) as RecyclerView//https://stackoverflow.com/questions/48459010/illegalstateexception-recyclerview-is-null-inside-of-fragment-within-navigation
@@ -51,7 +53,7 @@ class ListViewActivity : AppCompatActivity() {
 //            recyclerView.layoutManager = LinearLayoutManager(this)
 //            recyclerView.adapter = adapter
 //        }
-        backButton.setOnClickListener {
+        backMainButton.setOnClickListener {
             val mainInputPage = Intent(this, MainActivity::class.java)
             startActivity(mainInputPage)
             finish()
