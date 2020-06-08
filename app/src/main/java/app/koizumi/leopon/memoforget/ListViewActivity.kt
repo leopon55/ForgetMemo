@@ -15,7 +15,7 @@ import java.util.*
 
 class ListViewActivity : AppCompatActivity() {
 
-    private val realm: Realm by lazy {
+    private val realm: Realm by lazy {//lazyという委譲プロパティを使って遅延初期化,この変数が最初に参照されたときに{}内の値をsetして初期化します。
         Realm.getDefaultInstance()
     }
 
