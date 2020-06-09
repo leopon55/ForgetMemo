@@ -1,14 +1,18 @@
 package app.koizumi.leopon.memoforget
 
 import android.content.Intent
+import android.icu.text.SimpleDateFormat
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.Sort
 import kotlinx.android.synthetic.main.activity_detail.*
 import java.nio.file.Files.delete
+import java.util.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -16,6 +20,7 @@ class DetailActivity : AppCompatActivity() {
         Realm.getDefaultInstance()
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -26,7 +31,7 @@ class DetailActivity : AppCompatActivity() {
 
         if (memoDetail != null) {
             detailTextView.text = memoDetail.content
-            dateTextView.text = memoDetail.createdAt.toString()
+            dateTextView.text = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.JAPANESE).format(memoDetail.createdAt)
         }
 
         backListButton.setOnClickListener {
@@ -48,9 +53,9 @@ class DetailActivity : AppCompatActivity() {
 //      クリック時の処理
         deleteButton.setOnClickListener {
             if (memoDetail != null) {
-                Toast.makeText(applicationContext, memoDetail.content + "を削除しました", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, memoDetail.shortContent + "を削除しました", Toast.LENGTH_LONG).show()
                 delete(memoDetail)
-//                finish()//画面閉じる???閉じないほうがいいか？
+                finish()//画面閉じる???閉じないほうがいいか？
             }
         }
 

@@ -25,7 +25,7 @@ class MemoAdapter(
 
     override fun getItemCount(): Int = memoList?.size ?: 0
 
-    @RequiresApi(Build.VERSION_CODES.N)//いる？（自動入力）
+    @RequiresApi(Build.VERSION_CODES.N)//いる？（SimpleDateFormatで自動入力）
     override fun onBindViewHolder(holder: MemoViewHolder, position: Int) {
         val memo: Memo = memoList?.get(position) ?: return
 
@@ -33,10 +33,15 @@ class MemoAdapter(
             listener.onItemClick(memo)
         }
 //        holder.imageView.setImageResource(memo.imageId)
-        holder.contentTextView.text = memo.content
+//        holder.contentTextView.text = memo.content
+        //過去に入力したやつも更新できると思ったけど→
+//        memo.shortContent = memo.content.substring(0,10)//→落ちる
+        holder.contentTextView.text = memo.shortContent//属性とか作らなくても、ここで=substringすればいいだけだったり？？？
         holder.dateTextView.text =
-            SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE).format(memo.createdAt)
+//            SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE).format(memo.createdAt)
+            SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.JAPANESE).format(memo.createdAt)
     }
+
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MemoViewHolder {
         val v = LayoutInflater.from(context).inflate(R.layout.list_cell, viewGroup, false)

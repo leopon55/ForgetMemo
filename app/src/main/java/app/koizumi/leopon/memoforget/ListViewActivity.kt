@@ -30,10 +30,10 @@ class ListViewActivity : AppCompatActivity() {
 //        val adapter = MemoAdapter(this, memoList, true)
         val detailPage = Intent(this,DetailActivity::class.java)
 
+        // クリック時の処理：　詳細画面へ遷移
         val adapter =
             MemoAdapter(this, memoList, object:MemoAdapter.OnItemClickListener {
                 override fun onItemClick(item: Memo) {
-                    // クリック時の処理
 //                    Toast.makeText(applicationContext, item.content + "を削除しました", Toast.LENGTH_SHORT).show()
 //                    delete(item.id)
                     detailPage.putExtra("memoId", item.id.toString())//idを持たせる
@@ -80,7 +80,8 @@ class ListViewActivity : AppCompatActivity() {
             val memo = it.createObject(Memo::class.java, UUID.randomUUID().toString())
 //            memo.imageId = imageId
             memo.content = content
-//            memo.createdAt = createdAt
+            //    contentの0-10文字目を表示
+            memo.shortContent = content.substring(0,10)
         }
     }
 

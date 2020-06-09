@@ -71,9 +71,11 @@ class MainActivity : AppCompatActivity() {
 
 //               newMemo.createdAt = createdAt
             newMemo.content = content
+            //    contentの0-10文字目
+            newMemo.shortContent = content.substring(0,10)
 
             // 表示するtext, 表示する時間
-            Snackbar.make(container,"保存しました！", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(container,"わすれました！", Snackbar.LENGTH_SHORT).show()
         }
     }
 }
