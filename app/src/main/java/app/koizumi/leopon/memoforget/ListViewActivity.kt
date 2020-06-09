@@ -81,7 +81,12 @@ class ListViewActivity : AppCompatActivity() {
 //            memo.imageId = imageId
             memo.content = content
             //    contentの0-10文字目を表示
-            memo.shortContent = content.substring(0,10)
+
+            if (memo.content.length > 10) {
+                memo.shortContent = content.substring(0, 10) + "..."
+            }else{
+                memo.shortContent = memo.content
+            }
         }
     }
 

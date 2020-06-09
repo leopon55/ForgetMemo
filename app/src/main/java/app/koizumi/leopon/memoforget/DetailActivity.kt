@@ -34,8 +34,8 @@ class DetailActivity : AppCompatActivity() {
             dateTextView.text = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.JAPANESE).format(memoDetail.createdAt)
         }
 
+        val listPage = Intent(this, ListViewActivity::class.java)
         backListButton.setOnClickListener {
-            val listPage = Intent(this, ListViewActivity::class.java)
             startActivity(listPage)
             finish()
         }
@@ -55,6 +55,7 @@ class DetailActivity : AppCompatActivity() {
             if (memoDetail != null) {
                 Toast.makeText(applicationContext, memoDetail.shortContent + "を削除しました", Toast.LENGTH_LONG).show()
                 delete(memoDetail)
+                startActivity(listPage)
                 finish()//画面閉じる???閉じないほうがいいか？
             }
         }

@@ -72,7 +72,11 @@ class MainActivity : AppCompatActivity() {
 //               newMemo.createdAt = createdAt
             newMemo.content = content
             //    contentの0-10文字目
-            newMemo.shortContent = content.substring(0,10)
+            if (newMemo.content.length > 10) {
+                newMemo.shortContent = content.substring(0, 10) + "..."
+            }else{
+                newMemo.shortContent = newMemo.content
+            }
 
             // 表示するtext, 表示する時間
             Snackbar.make(container,"わすれました！", Snackbar.LENGTH_SHORT).show()

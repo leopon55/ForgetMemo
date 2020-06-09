@@ -13,7 +13,7 @@ open class Memo(
 //    @Required
     open var content:String ="No Content",
 
-    open var shortContent:String = "short",//ここでcontent.substring(0,10)すると、contentの初期値が使われちゃう
+    open var shortContent:String = "short...",//ここでcontent.substring(0,10)すると、contentの初期値が使われちゃう
 //    @Required
 //    open var createdAt: String =""
     open var createdAt: Date = Date(System.currentTimeMillis())//引数がない場合、現在時刻がデフォルト値になる
