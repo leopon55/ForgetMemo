@@ -1,13 +1,17 @@
 package app.koizumi.leopon.memoforget
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.Sort
 import kotlinx.android.synthetic.main.activity_list_view.*
+import java.time.LocalDateTime
 import java.util.*
 
 class ListViewActivity : AppCompatActivity() {
@@ -16,11 +20,14 @@ class ListViewActivity : AppCompatActivity() {
         Realm.getDefaultInstance()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_view)
 
-        val memoList = readAll()
+        val memoList = readAll()//全部表示
+//        val now = LocalDateTime.now()
+
 
         // タスクリストが空だったときにダミーデータを生成する
         if (memoList.isEmpty()) {
@@ -91,8 +98,16 @@ class ListViewActivity : AppCompatActivity() {
     }
 
     fun readAll(): RealmResults<Memo> {
-        return realm.where(Memo::class.java).findAll().sort("createdAt", Sort.ASCENDING)
+        var now: Calendar = Calendar.getInstance()
+        now.time = Date()//自動で現在時刻がはいる
+
+//        val now: Date = Date(System.currentTimeMillis())//現在時刻
+        Log.d("NOW", now.time.toString())
+//        Log.d("displayAt", displayAt.toString())
+        //displayAtが、現在時刻よりも小さい(lessThan)もの →表示する
+        return realm.where(Memo::class.java).lessThan("displayAt", now.time).findAll().sort("createdAt", Sort.ASCENDING)
     }
+
 
     fun update(id: String, content: String) {
         realm.executeTransaction {

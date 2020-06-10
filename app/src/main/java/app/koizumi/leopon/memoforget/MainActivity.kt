@@ -1,8 +1,12 @@
 package app.koizumi.leopon.memoforget
 
 import android.content.Intent
+import android.icu.text.SimpleDateFormat
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.annotation.RequiresApi
 import com.google.android.material.snackbar.Snackbar
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     val realm: Realm = Realm.getDefaultInstance()
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -54,6 +59,7 @@ class MainActivity : AppCompatActivity() {
 
     //        保存する処理
 //    fun save(createdAt:Date, content: String){
+    @RequiresApi(Build.VERSION_CODES.N)
     fun save(content: String){
 //
 //        val memo = read()//保存されているメモを取得する→しない
@@ -78,7 +84,22 @@ class MainActivity : AppCompatActivity() {
                 newMemo.shortContent = newMemo.content
             }
 
-            // 表示するtext, 表示する時間
+            val contentLen = newMemo.content.length
+            var displayAt: Calendar = Calendar.getInstance()
+            val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.JAPANESE)
+
+//            var displayAt :Date = Date(System.currentTimeMillis())
+            displayAt.time = Date()//自動で現在時刻がはいる
+            Log.d("KEISAN MAE",df.format(displayAt.time))
+//            displayAt.add(Calendar.DATE,2)
+            displayAt.add(Calendar.MINUTE,contentLen)//文字数(分)を現在時刻に追加
+            Log.d("KEISAN GO",df.format(displayAt.time))
+            Log.d("KEISAN GOGO",displayAt.toString())
+
+            newMemo.displayAt = displayAt.time
+
+
+//             表示するtext, 表示する時間
             Snackbar.make(container,"わすれました！", Snackbar.LENGTH_SHORT).show()
         }
     }
