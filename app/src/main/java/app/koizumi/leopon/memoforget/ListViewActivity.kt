@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.realm.Realm
@@ -24,6 +25,9 @@ class ListViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_view)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
         val memoList = readAll()//全部表示
 //        val now = LocalDateTime.now()
@@ -66,6 +70,17 @@ class ListViewActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            android.R.id.home->{
+                val mainInputPage = Intent(this, MainActivity::class.java)
+                startActivity(mainInputPage)
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {

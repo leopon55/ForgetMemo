@@ -5,6 +5,7 @@ import android.icu.text.SimpleDateFormat
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import io.realm.Realm
@@ -25,6 +26,8 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val memoId = intent.getStringExtra("memoId")
 
         val memoDetail = realm.where(Memo::class.java).equalTo("id", memoId).findFirst()
@@ -35,6 +38,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         val listPage = Intent(this, ListViewActivity::class.java)
+
         backListButton.setOnClickListener {
             startActivity(listPage)
             finish()
@@ -60,6 +64,17 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            android.R.id.home->{
+                val listPage = Intent(this, ListViewActivity::class.java)
+                startActivity(listPage)
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 //    fun read(memoId:String): RealmResults<Memo> {
