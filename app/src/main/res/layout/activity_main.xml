@@ -21,10 +21,13 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:ems="11"
+            android:fontFamily="sans-serif"
             android:hint="嫌なこと、忘れたいこと"
+            android:inputType="textMultiLine"
             android:padding="10dp"
             android:textAlignment="textStart"
-            android:inputType="textMultiLine"/>
+            android:textColor="#C2000000"
+            android:textStyle="normal" />
 
         <LinearLayout
             android:layout_width="match_parent"
