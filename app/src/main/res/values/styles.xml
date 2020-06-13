@@ -9,7 +9,10 @@
         <!-- ActionBarのスタイル設定 -->
         <item name="android:actionBarStyle">@style/CustomActionBar</item>
         <item name="actionBarStyle">@style/CustomActionBar</item>
+
+        <item name="colorControlNormal">@color/colorPrimaryText</item>
     </style>
+
 
     <!-- 背景色の設定とタイトルテキストカラーのスタイル設定 -->
     <style name="CustomActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
