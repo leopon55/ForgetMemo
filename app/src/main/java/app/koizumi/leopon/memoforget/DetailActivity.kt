@@ -12,6 +12,7 @@ import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.Sort
 import kotlinx.android.synthetic.main.activity_detail.*
+import java.lang.ref.Reference
 import java.nio.file.Files.delete
 import java.util.*
 
@@ -27,6 +28,8 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setHomeAsUpIndicator(R.drawable.arrow_nobg)
+//        supportActionBar?.setHomeAsUpIndicator(attr.actionModeCloseDrawable)
 
         val memoId = intent.getStringExtra("memoId")
 
@@ -39,10 +42,10 @@ class DetailActivity : AppCompatActivity() {
 
         val listPage = Intent(this, ListViewActivity::class.java)
 
-        backListButton.setOnClickListener {
-            startActivity(listPage)
-            finish()
-        }
+//        backListButton.setOnClickListener {
+//            startActivity(listPage)
+//            finish()
+//        }
 
 //        すぐに更新するならアダプターらしい
 //        val adapter =

@@ -64,11 +64,11 @@ class ListViewActivity : AppCompatActivity() {
 //            recyclerView.layoutManager = LinearLayoutManager(this)
 //            recyclerView.adapter = adapter
 //        }
-        backMainButton.setOnClickListener {
-            val mainInputPage = Intent(this, MainActivity::class.java)
-            startActivity(mainInputPage)
-            finish()
-        }
+//        backMainButton.setOnClickListener {
+//            val mainInputPage = Intent(this, MainActivity::class.java)
+//            startActivity(mainInputPage)
+//            finish()
+//        }
 
     }
 
