@@ -1,16 +1,20 @@
 package app.koizumi.leopon.memoforget
 
+import android.app.Activity
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.google.android.material.snackbar.Snackbar
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+
+const val MY_REQUEST_CODE = 0
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,11 +29,16 @@ class MainActivity : AppCompatActivity() {
 
 
         forgetButton.setOnClickListener {
-//            val date = dateEditText.text.toString()
-//            val date =
             val content = contentEditText.text.toString()
-//            val combine = date + content
-            save(content)
+//            save(content)
+
+            val rendaPage = Intent(this,RendaActivity::class.java)
+            rendaPage.putExtra("naiyo",content)//naiyoというタグで、contentを送る
+
+//            startActivity(rendaPage)
+
+            startActivityForResult(rendaPage,MY_REQUEST_CODE)
+//            finish()
         }
 
         rememberButton.setOnClickListener {
@@ -101,6 +110,17 @@ class MainActivity : AppCompatActivity() {
 
 //             表示するtext, 表示する時間
             Snackbar.make(container,"わすれました！", Snackbar.LENGTH_SHORT).show()
+        }
+    }
+
+//  SecondActivity を閉じた際に情報を受け取るためのメソッドです。変数 data には、返された値が格納されています。
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+
+    if (requestCode == MY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // リクエストコードが一致して、かつ、アクティビティが正常に終了していた場合、受け取った値を表示
+            val received = data!!
+            Toast.makeText(this, "${received.extras?.get("tapped")}, ${received.extras?.get("naiyo")}", Toast.LENGTH_LONG).show()
         }
     }
 }
