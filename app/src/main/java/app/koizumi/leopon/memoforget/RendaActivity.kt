@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.provider.MediaStore
+import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -143,6 +145,24 @@ class RendaActivity : AppCompatActivity() {
         puyon()
         tapCount += 1
         countText.text = tapCount.toString()
+
+
+        Log.d("文字のsize",contentText.textSize.toString())
+        var size = contentText.textSize
+        Log.d("size",size.toString())
+        Log.d("文字のsize",contentText.textSize.toString())
+
+        size /= 2//多分spの計算で、2倍になるけど、2倍になっちゃうから、とりま割る2
+        Log.d("size",size.toString())
+
+        size -= 1
+//        size = (size * 0.9).toFloat()
+        Log.d("size",size.toString())
+
+//        contentText.textSize = "a"//(contentText.textSize -1 )
+        contentText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, size)
+        Log.d("size",size.toString())
+        Log.d("文字のsize",contentText.textSize.toString())
     }
 
     fun puyon(){

@@ -16,7 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="0.3"
             android:orientation="vertical">
 
@@ -29,7 +30,7 @@
                     android:id="@+id/guideText1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     android:autoText="false"
                     android:ems="11"
                     android:fontFamily="sans-serif"
@@ -114,6 +115,7 @@
             android:text="さっき書いた、あんなことやこんなことがだああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ"
             android:textAlignment="textStart"
             android:textColor="#C2000000"
+            android:textSize="18sp"
             android:textStyle="normal" />
 
 
