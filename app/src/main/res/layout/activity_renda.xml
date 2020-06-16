@@ -35,7 +35,7 @@
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="ボタンを交互に連打しよう！"
+                    android:text="連打して忘れよう！"
                     android:textColor="#DE000000"
                     android:textSize="24sp"
                     android:textStyle="bold" />

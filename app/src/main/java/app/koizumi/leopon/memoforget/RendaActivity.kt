@@ -2,9 +2,14 @@ package app.koizumi.leopon.memoforget
 
 import android.app.Activity
 import android.content.Intent
+import android.media.AudioAttributes
+import android.media.MediaPlayer
+import android.media.SoundPool
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_renda.*
@@ -38,9 +43,18 @@ class RendaActivity : AppCompatActivity() {
         }
     }
 
+    private lateinit var mSoundPool: SoundPool //SoundPoolの変数を宣言
+    //    10秒までの短い音楽を扱うなら、SoundPool。
+    private lateinit var mSoundID: Array<Int?>
+    private val mSoundResource = arrayOf(
+        R.raw.puyon,
+        R.raw.tear_papers
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_renda)
+
 
         val content = intent.getStringExtra("naiyo")//naiyoというタグのcontentを受け取る
 //        val content = intent.extras.get("naiyo")
@@ -58,22 +72,30 @@ class RendaActivity : AppCompatActivity() {
 
         leftTapButton.setOnClickListener {
             if (second < 10){
-                checkFlag = 1
+//                checkFlag = 1
+                tapAction()
             }
+//            効果音を巻き戻す、再度タップされても最初から流せる
+//            tapSound.seekTo(0)
+//            tapSound.start()
         }
 
         rightTapButton.setOnClickListener {
-            if (checkFlag == 1){
-                tapCount += 1
-                checkFlag = 0
+//            if (checkFlag == 1){
+//                tapCount += 1
+//                checkFlag = 0
+//            }
+//            countText.text = tapCount.toString()
+            if (second < 10){
+              tapAction()
             }
-            countText.text = tapCount.toString()
         }
 
         endButton.setOnClickListener {
             if (tapCount==0){
                 Toast.makeText(applicationContext, "1回は忘れましょう？", Toast.LENGTH_SHORT).show()
             }else{
+                paper()
 //                val mainPage = Intent(this,MainActivity::class.java)
                 val mainPage = Intent()
                 mainPage.putExtra("tapped",tapCount)//naiyoというタグで、contentを送る
@@ -84,6 +106,54 @@ class RendaActivity : AppCompatActivity() {
 
                 finish()
             }
+        }
+    }
+
+
+
+    override fun onResume() {
+        super.onResume()
+
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_MEDIA)
+            .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+//            .setMaxStreams(mSoundResource.size)
+            .build()
+
+        mSoundPool = SoundPool.Builder()
+            .setAudioAttributes(audioAttributes)
+            .setMaxStreams(mSoundResource.size)
+            .build()
+
+        mSoundID = arrayOfNulls(mSoundResource.size)
+
+        for (i in 0 until mSoundResource.size) {
+            mSoundID[i] = mSoundPool.load(applicationContext, mSoundResource[i], 0)
+        }
+    }
+
+    override fun onDestroy(){
+        super.onDestroy()
+        mSoundPool.release()
+    }
+
+
+
+    fun tapAction(){
+        puyon()
+        tapCount += 1
+        countText.text = tapCount.toString()
+    }
+
+    fun puyon(){
+        if(mSoundID[0] != null) {
+            mSoundPool.play(mSoundID[0] as Int, 1.0F,1.0F,0,0,1.0F)
+        }
+    }
+
+    fun paper(){
+        if(mSoundID[1] != null) {
+            mSoundPool.play(mSoundID[1] as Int, 1.0F,1.0F,0,0,1.0F)
         }
     }
 }
