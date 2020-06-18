@@ -1,4 +1,4 @@
-package app.koizumi.leopon.memoforget
+package app.koizumi.leopon.emotimes
 
 import android.content.Intent
 import android.icu.text.SimpleDateFormat

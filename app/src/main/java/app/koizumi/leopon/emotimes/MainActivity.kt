@@ -1,4 +1,4 @@
-package app.koizumi.leopon.memoforget
+package app.koizumi.leopon.emotimes
 
 import android.app.Activity
 import android.content.Intent
@@ -105,8 +105,10 @@ class MainActivity : AppCompatActivity() {
             Log.d("KEISAN MAE",df.format(displayAt.time))
 
 //            displayAt.add(Calendar.DATE,2)
-            val addDays = contentLen + tapnum
-            displayAt.add(Calendar.MINUTE,addDays)//文字数(分)を現在時刻に追加
+            val addDays = contentLen + tapnum/2
+//            displayAt.add(Calendar.MINUTE,addDays)//文字数(分)を現在時刻に追加
+            displayAt.add(Calendar.DATE,addDays)//文字数(分)を現在時刻に追加
+
             Log.d("KEISAN GO",df.format(displayAt.time))
             Log.d("KEISAN GOGO",displayAt.toString())
 

@@ -1,4 +1,4 @@
-package app.koizumi.leopon.memoforget
+package app.koizumi.leopon.emotimes
 
 import android.app.Activity
 import android.content.Intent

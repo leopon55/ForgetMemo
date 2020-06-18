@@ -1,4 +1,4 @@
-package app.koizumi.leopon.memoforget
+package app.koizumi.leopon.emotimes
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey

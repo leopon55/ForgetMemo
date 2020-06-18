@@ -1,4 +1,4 @@
-package app.koizumi.leopon.memoforget
+package app.koizumi.leopon.emotimes
 
 import android.content.Intent
 import android.os.Build
@@ -89,12 +89,12 @@ class ListViewActivity : AppCompatActivity() {
     }
 
     fun createDummyData() {
-        for (i in 1..2) {
-            var m = i*2-1
-            var n =i*2
-            create("あんなこと $m")
-            create("こんなこと $n")
-        }
+//        for (i in 1..2) {
+//            var m = i*2-1
+//            var n =i*2
+        create("あんなこと")
+        create("こんなこと")
+//        }
     }
 
     fun create(content: String) {
