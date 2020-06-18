@@ -29,11 +29,7 @@ class RendaActivity : AppCompatActivity() {
             startButton.text = "コンティニュー"
             endButton.isVisible = true
 
-            if (opaque<2){
-                startButton.isVisible = false
-            }else{
-                startButton.isVisible = false
-            }
+            startButton.isVisible = opaque >= 2//この条件の時にtrue＝表示される
 
             rightTapButton.setBackgroundResource(R.drawable.background_rounded_corners_gray)
             leftTapButton.setBackgroundResource(R.drawable.background_rounded_corners_gray)
@@ -155,8 +151,12 @@ class RendaActivity : AppCompatActivity() {
         countText.text = tapCount.toString()
 
         if (opaque>=2) {
+            color += if (color <= 180){//3*61 + 2*36 = 255
+                3
+            }else{
+                2
+            }
             opaque -= 2
-            color += 2
             contentText.setTextColor(Color.argb(opaque, color, color, color))
             Log.d("opaque",opaque.toString())
             Log.d("color",color.toString())

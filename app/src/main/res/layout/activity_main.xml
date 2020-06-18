@@ -43,8 +43,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="0.1"
-                android:background="@drawable/background_rounded_corners"
-                android:text="思い出す" />
+                android:background="@drawable/background_rounded_corners_green"
+                android:text="思い出す"
+                android:textColor="@color/colorPrimaryText" />
 
             <Button
                 android:id="@+id/forgetButton"
