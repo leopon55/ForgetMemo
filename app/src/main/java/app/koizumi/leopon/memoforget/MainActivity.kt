@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
 
             contentEditText.text.clear()
 
-//             表示するtext, 表示する時間
+//             本番動作時はコメントアウト(?)
 //            Snackbar.make(container,"わすれました！", Snackbar.LENGTH_SHORT).show()
             Toast.makeText(this, "${newMemo.shortContent}を, ${addDays}日(分)間忘れるよ", Toast.LENGTH_LONG).show()
 

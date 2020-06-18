@@ -114,7 +114,7 @@
             android:padding="10dp"
             android:text="さっき書いた、あんなことやこんなことがだああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ"
             android:textAlignment="textStart"
-            android:textColor="#C2000000"
+            android:textColor="#C1000000"
             android:textSize="18sp"
             android:textStyle="normal" />
 

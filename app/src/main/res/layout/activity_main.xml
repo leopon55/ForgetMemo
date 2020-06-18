@@ -26,6 +26,7 @@
             android:padding="10dp"
             android:textAlignment="textStart"
             android:textColor="#C2000000"
+            android:textSize="18sp"
             android:textStyle="normal" />
 
         <LinearLayout

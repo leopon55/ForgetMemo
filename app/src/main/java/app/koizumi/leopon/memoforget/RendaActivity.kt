@@ -2,6 +2,7 @@ package app.koizumi.leopon.memoforget
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.SoundPool
@@ -26,8 +27,13 @@ class RendaActivity : AppCompatActivity() {
         //タイマーが終了した時に呼ばれる
         override fun onFinish() {
             startButton.text = "コンティニュー"
-            startButton.isVisible = true
             endButton.isVisible = true
+
+            if (opaque<2){
+                startButton.isVisible = false
+            }else{
+                startButton.isVisible = false
+            }
 
             rightTapButton.setBackgroundResource(R.drawable.background_rounded_corners_gray)
             leftTapButton.setBackgroundResource(R.drawable.background_rounded_corners_gray)
@@ -140,29 +146,40 @@ class RendaActivity : AppCompatActivity() {
     }
 
 
+    private var opaque:Int = 195//C2000000,76%の不透明度のはず
+    private var color:Int = 0//C2000000,76%の不透明度のはず
 
     fun tapAction(){
         puyon()
         tapCount += 1
         countText.text = tapCount.toString()
 
+        if (opaque>=2) {
+            opaque -= 2
+            color += 2
+            contentText.setTextColor(Color.argb(opaque, color, color, color))
+            Log.d("opaque",opaque.toString())
+            Log.d("color",color.toString())
+        }
 
-        Log.d("文字のsize",contentText.textSize.toString())
-        var size = contentText.textSize
-        Log.d("size",size.toString())
-        Log.d("文字のsize",contentText.textSize.toString())
-
-        size /= 2//多分spの計算で、2倍になるけど、2倍になっちゃうから、とりま割る2
-        Log.d("size",size.toString())
-
-        size -= 1
-//        size = (size * 0.9).toFloat()
-        Log.d("size",size.toString())
-
-//        contentText.textSize = "a"//(contentText.textSize -1 )
-        contentText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, size)
-        Log.d("size",size.toString())
-        Log.d("文字のsize",contentText.textSize.toString())
+////        文字のサイズ
+////        端末によって変わる（spの計算しないといけない）ので、あとで
+//        Log.d("文字のsize",contentText.textSize.toString())
+//        var size = contentText.textSize
+//        Log.d("size",size.toString())
+//        Log.d("文字のsize",contentText.textSize.toString())
+//
+//        size /= 2//多分spの計算で、2倍になるけど、2倍になっちゃうから、とりま割る2
+//        Log.d("size",size.toString())
+//
+//        size -= 1
+////        size = (size * 0.9).toFloat()
+//        Log.d("size",size.toString())
+//
+////        contentText.textSize = "a"//(contentText.textSize -1 )
+//        contentText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, size)
+//        Log.d("size",size.toString())
+//        Log.d("文字のsize",contentText.textSize.toString())
     }
 
     fun puyon(){
