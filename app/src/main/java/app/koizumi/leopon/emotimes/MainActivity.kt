@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity() {
 
 //             本番動作時はコメントアウト(?)
 //            Snackbar.make(container,"わすれました！", Snackbar.LENGTH_SHORT).show()
-            Toast.makeText(this, "${newMemo.shortContent}を, ${addDays}日(分)間忘れるよ", Toast.LENGTH_LONG).show()
+//            Toast.makeText(this, "${newMemo.shortContent}を, ${addDays}日(分)間忘れるよ", Toast.LENGTH_LONG).show()
 
         }
     }
