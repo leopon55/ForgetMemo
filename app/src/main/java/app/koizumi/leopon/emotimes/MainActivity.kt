@@ -95,26 +95,30 @@ class MainActivity : AppCompatActivity() {
             val contentLen: Int = contentEditText.lineCount
 //            val contentLen: Int = content.lineCount
 
-            Log.d("GYOUSUU",contentLen.toString())
+//            Log.d("GYOUSUU",contentLen.toString())
 
             var displayAt: Calendar = Calendar.getInstance()
             val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.JAPANESE)
 
 //            var displayAt :Date = Date(System.currentTimeMillis())
+
+
             displayAt.time = Date()//自動で現在時刻がはいる
-            Log.d("KEISAN MAE",df.format(displayAt.time))
 
-//            displayAt.add(Calendar.DATE,2)
-            val addDays = contentLen + tapnum/2
-//            displayAt.add(Calendar.MINUTE,addDays)//文字数(分)を現在時刻に追加
-            displayAt.add(Calendar.DATE,addDays)//文字数(分)を現在時刻に追加
+            val addDays = contentLen*4 + tapnum/4
 
-            Log.d("KEISAN GO",df.format(displayAt.time))
-            Log.d("KEISAN GOGO",displayAt.toString())
+            displayAt.add(Calendar.DATE,addDays)//現在時刻に追加
+
+            //            displayAt.add(Calendar.MINUTE,addDays)//文字数(分)を現在時刻に追加
+
+//            Log.d("KEISAN GO",df.format(displayAt.time))
+//            Log.d("KEISAN GOGO",displayAt.toString())
 
             newMemo.displayAt = displayAt.time
 
             contentEditText.text.clear()
+
+            Toast.makeText(this, "${newMemo.shortContent}を忘れました！", Toast.LENGTH_LONG).show()
 
 //             本番動作時はコメントアウト(?)
 //            Snackbar.make(container,"わすれました！", Snackbar.LENGTH_SHORT).show()
